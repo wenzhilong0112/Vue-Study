@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+		<title>test2</title>
+	</head>
+	<body>
+		<!-- 双色球号码组随机生成 -->
+		<div id="app">
+			<h2>双色球随机生成</h2>
+			<button type="button" @click="generation">点击生成</button>
+			<h3>红球：{{red}}</h3>
+			<h3>蓝球：{{blue}}</h3>
+		</div>
+		<script type="text/javascript">
+			new Vue({
+				el: '#app',
+				data() {
+					return {
+						red: [],
+						blue: []
+					}
+				},
+				methods: {
+					generation() {
+						this.red = []
+						this.blue = []
+						for (i = 0; i < 6; i++) {
+							this.red.push(Math.ceil(Math.random() * 32 + 1))
+							if(this.red.length >= 2 ){
+								for(j = i-1; j < this.red.length; j++){
+									if(this.red[i] != this.red[i-1]){
+										continue
+									}
+								}
+								
+							}
+						}
+						this.blue.push(Math.ceil(Math.random() * 17 + 1))
+					}
+				}
+
+			})
+		</script>
+	</body>
+</html>
