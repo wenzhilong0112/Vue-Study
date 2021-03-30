@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+		<title>test1</title>
+	</head>
+	<body>
+		<!-- 用户制定月份输出天数 -->
+		<div id="app">
+			月份：<input type="text" v-model="month" placeholder="请输入要查询的月份" />
+			<br>
+			<p v-if="arr1.indexOf(month) > -1">天数：31天</p>
+			<p v-if="arr2.indexOf(month) > -1"> 天数：30天</p>
+			<p v-if="arr3.indexOf(month) > -1">天数：28天</p>
+			<p v-if="month > 12 || month < 0">抱歉，输入的月份有误</p>
+		</div>
+		<script type="text/javascript">
+			new Vue({
+				el: '#app',
+				data() {
+					return {
+						month: '',
+						arr1: ["1", "3", "5", "7", "8", "10", "12"],
+						arr2: ["4", "6", "9", "11"],
+						arr3: ["2"]
+					}
+				}
+			})
+		</script>
+	</body>
+</html>
