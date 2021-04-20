@@ -1,72 +1,69 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<title>Vue生命周期</title>
-	</head>
-	<body>
-		<!-- 打开后，按F12进入开发者调试面板，仔细观察Console面板的输出内容 -->
-		<div id="app">
-			<h1>{{title}}</h1>
-			<button type="button" @click="randomTitle()">改变Title</button>
-			<button type="button" @click="destoryVm()">销毁实例</button>
-		</div>
+<head>
+    <meta charset="utf-8">
+    <title>Vue生命周期</title>
+</head>
+<body>
+<!-- 打开后，按F12进入开发者调试面板，仔细观察Console面板的输出内容 -->
+<div id="app">
+    <h1>{{title}}</h1>
+    <button type="button" @click="randomTitle()">改变Title</button>
+    <button type="button" @click="destoryVm()">销毁实例</button>
+</div>
 
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.16/vue.js"></script>
-		<script type="text/javascript">
-			new Vue({
-					el: '#app',
-					data() {
-						return {
-							title: 'Hello World',
-						}
-					},
-					methods: {
-						randomTitle() {
-							let arr = ['China', 'world', 'universe']
-							this.title = 'Hello' + arr[Math.floor(Math.random() * 2.999)]
-						},
-						destoryVm() {
-							this.$destroy()
-						}
-					},
-					
-					// 钩子函数：
-					
-					// 实例初始化之后，数据观测和事件绑定之前
-					beforeCreate() {
-						console.log('1、before create')
-					},
-					// 实例初始化完成，挂载尚未开始
-					created() {
-						console.log('2、created')
-					},
-					// 挂载之前，render函数首次调用
-					beforeMount() {
-						console.log('3、before mount')
-					},
-					// 在实例挂载到DOM节点上之后
-					mounted() {
-						console.log('4、mounted')
-					},
-					// 数据更新时，在虚拟DOM状态变化之前
-					beforeUpdate() {
-						console.log('5、before update')
-					},
-					// 虚拟DOM被重新渲染之后
-					updated() {
-						console.log('6、updated')
-					},
-					// 实例销毁之前，此时实例依然可用
-					beforeDestroy() {
-						console.log('7、before destroy')
-					},
-					// 实例销毁后，此时Vue实例及其子实例将完全解绑
-					destroyed() {
-						console.log('8、destroyed')
-					}
-				}
-			)
-		</script>
-	</body>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+<script type="text/javascript">
+    new Vue({
+        el: '#app',
+        data() {
+            return {
+                title: 'Hello World',
+            }
+        },
+        methods: {
+            randomTitle() {
+                let arr = ['China', 'world', 'universe']
+                this.title = 'Hello' + arr[Math.floor(Math.random() * 2.999)]
+            },
+            destoryVm() {
+                this.$destroy()
+            }
+        },
+        // 钩子函数：
+        // 实例初始化之后，数据观测和事件绑定之前
+        beforeCreate() {
+            console.log('1、before create')
+        },
+        // 实例初始化完成，挂载尚未开始
+        created() {
+            console.log('2、created')
+        },
+        // 挂载之前，render函数首次调用
+        beforeMount() {
+            console.log('3、before mount')
+        },
+        // 在实例挂载到DOM节点上之后
+        mounted() {
+            console.log('4、mounted')
+        },
+        // 数据更新时，在虚拟DOM状态变化之前
+        beforeUpdate() {
+            console.log('5、before update')
+        },
+        // 虚拟DOM被重新渲染之后
+        updated() {
+            console.log('6、updated')
+        },
+        // 实例销毁之前，此时实例依然可用
+        beforeDestroy() {
+            console.log('7、before destroy')
+        },
+        // 实例销毁后，此时Vue实例及其子实例将完全解绑
+        destroyed() {
+            console.log('8、destroyed')
+        }
+    })
+</script>
+</body>
 </html>
