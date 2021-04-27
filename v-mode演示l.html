@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>v-model演示</title>
+		<script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.min.js"></script>
+	</head>
+	<body>
+		<div id="app">
+			<h3>单行文本框</h3>
+			<input type="text" v-model="singleText" style="width: 240px;" />
+			<p>{{singleText}}</p>
+
+			<hr>
+
+			<h3>多行文本框</h3>
+			<textarea v-model="multiText" style="width: 240px;"></textarea>
+			<pre>{{multiText}}</pre>
+
+			<hr>
+
+			<h3>单选框</h3>
+			<!-- 由于点击，被选中的单选项无法取消其被选中状态，所以实际应用中一般没有使用单个选项的场景 -->
+			<!-- 这里，设置v-model共用一个变量，可实现RadioGroup的效果 -->
+			<input type="radio" id="ra" value="杨玉环" v-model="radioValue" />
+			<label for="ra">A.杨玉环</label>
+			<input type="radio" id="rb" value="赵飞燕" v-model="radioValue" />
+			<label for="rb">B.赵飞燕</label>
+			<p>{{radioValue}}</p>
+
+			<hr>
+
+			<h3>单个复选框</h3>
+			<!-- 单个复选框被用于true和false的切换 -->
+			<input type="checkbox" id="c" v-model="toggleValue" />
+			<label for="c">天生丽质</label>
+			<p>{{toggleValue}}</p>
+
+			<hr>
+
+			<h3>多个复选框</h3>
+			<!-- 多个复选框，v-model接收数组类型变量 -->
+			<input type="checkbox" id="ca" value="漂亮" v-model="checkedValues" />
+			<label for="ca">A.回眸一笑百媚生</label>
+			<input type="checkbox" id="cb" value="瘦弱" v-model="checkedValues" />
+			<label for="cb">B.体轻能为掌上舞</label>
+			<input type="checkbox" id="cc" value="得宠" v-model="checkedValues" />
+			<label for="cc">C.三千宠爱在一身</label>
+			<p>{{checkedValues.join(',')}}</p>
+
+			<hr>
+
+			<h2>单项下拉选择框</h2>
+			<select v-model="singleSelect">
+				<!-- 如果没有设置value，则option的节点的文本值会被当做value值 -->
+				<option value="汉代">汉代</option>、
+				<option>唐代</option>
+			</select>
+			<p>{{singleSelect}}</p>
+
+			<hr>
+
+			<h2>多项下拉选择框</h2>
+			<select multiple v-model="multiSelect">
+				<!-- 按住ctrl键，可执行多选 -->
+				<option value=1>出身寒微</option>
+				<option value=2>饱受争议</option>
+				<option value="3">结局悲凉</option>
+			</select>
+			<p>{{multiSelect.join(',')}}</p>
+		</div>
+
+		<script>
+			new Vue({
+				el: '#app',
+				data() {
+					return {
+						singleText: '',
+						multiText: '',
+						radioValue: '',
+						toggleValue: false,
+						checkedValues: [],
+						singleSelect: '唐代', //设置默认选择项		
+						multiSelect: [1, 3]
+					}
+				},
+			})
+		</script>
+	</body>
+</html>
