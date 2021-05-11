@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>filter</title>
+		<script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+	</head>
+	<body>
+		<!-- 
+			filters选项用于定义当前组件或实例作用域中可用的过滤器。
+			可在双括号插值中添加在JavaScript表达式的尾部，以管道符“|”与表达式隔开，表达式的值将被传入filter中。
+			当存在多个filter时，Vue将从左向右执行过滤，并将上一次过滤的结果作为下一次过滤的输入值 
+		-->
+		<div id="app">
+			<h1>{{title}}</h1>
+			<h1>{{title | supplyTitle1 }}</h1>
+			<h1>{{title | supplyTitle1 | supplyTitle2 }}</h1>
+		</div>
+		<script>
+			new Vue({
+				el: '#app',
+				data() {
+					return {
+						title: 'Test#%for#%Filter.'
+					}
+				},
+				filters: {
+					supplyTitle1: function(value) {
+						console.log('Supply Title 1');
+						return value.replace(/#/g, '');
+					},
+					supplyTitle2: function(value) {
+						console.log('Supply Title 2');
+						return value.replace(/%/g, '')
+					}
+				}
+
+
+			})
+		</script>
+	</body>
+</html>
