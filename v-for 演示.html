@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>指令：v-for</title>
+		<script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+	</head>
+	<body>
+		<!-- v-for用于实现列表渲染，可以使用 item in items 或者 item of items 的语法 -->
+		<div id="app">
+			<div style="float: left; width: 160px;">
+				<h2>用户列表</h2>
+				<ul>
+					<!-- index 作为第二个参数，用以标识下标 -->
+					<li v-for="(item, index) in users">{{index}}.&nbsp;{{item.name}}</li>
+				</ul>
+			</div>
+				
+			<!-- 除了渲染数组之外，v-for还可以渲染一个对象的键值对 -->
+			<div style="margin-left: 170px;overflow: hidden;">
+				<h2>用户列表2</h2>
+				<ul>
+					<!-- uindex 作为第二个参数，用以标识下标 -->
+					<li v-for="(user, uindex) of users">
+						用户{{uindex+1}}
+						<ul>
+							<!-- key 作为第二个参数，用以标识键名 -->
+							<li v-for="(value, key) of user">{{key}}:&nbsp;{{value}}</li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+			
+		</div>
+		<script>
+			new Vue({
+				el:'#app',
+				data() {
+					return {
+						users: [
+							{
+								name:'张三',
+								age:18,
+								city:'北京'
+							},
+							{
+								name:'李四',
+								age:23,
+								city:'天津'
+							}
+						]
+					}
+				},
+				
+			})
+		</script>
+	</body>
+</html>
