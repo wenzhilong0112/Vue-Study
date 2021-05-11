@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>v-model 与自定义组件</title>
+		<script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+	</head>
+	<body>
+		
+		<div id="app">
+			<!-- 自定义组件 v-model -->
+			<custom-screen v-model="text"></custom-screen>
+			<br />
+			<!-- 原生元素 v-model -->
+			输入框：<input type="text" v-model="text" />
+		</div>
+
+		<script type="text/javascript">
+			
+			/* 
+				在自定义组件中， value 属性和 input 事件尤为重要，它们分别负责不同方向的数据传递。
+					value属性用于接收外部传入的值以更新组件内部的状态；
+					input事件由开发者决定在什么时候调用，并负责将组件内部的状态同步到外部。
+			 */
+			
+			// 自定义组件
+			Vue.component('custom-screen', {
+				// 使用value属性接受外部传入的值
+				props: ['value'],
+				methods: {
+					handleReset() {
+						console.log('重置为\'\'')
+						// 使用 $emit 发送input事件，并将目标值作为参数传出
+						this.$emit('input','')
+					}
+				},
+				template:`
+					<div>
+						<h2>输入值为：{{value}}</h2>
+						<button @click="handleReset">重置为空</button>
+					</div>
+				`
+			})
+			new Vue({
+				el:'#app',
+				data() {
+					return {
+						text: ''
+					}
+				},
+			})
+		</script>
+	</body>
+</html>
