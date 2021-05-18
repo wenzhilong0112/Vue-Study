@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>动态组件</title>
+		<script src="./js/vue.js"></script>
+		<style type="text/css">
+			.tabs {
+				margin: 0;
+				padding: 0;
+				list-style: none;
+			}
+
+			.per-tab {
+				display: inline-block;
+				width: 120px;
+				line-height: 32px;
+				border: 1px solid #55aaff;
+				border-bottom: 0px
+			}
+
+			.tab-content {
+				height: 240px;
+				border: 1px solid #55aaff;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="app">
+			<ul class="tabs">
+				<li class="per-tab" @click="toggleView('Home')">Home</li>
+				<li class="per-tab" @click="toggleView('About')">About</li>
+			</ul>
+			<div class="tab-content">
+				<!-- component接收一个名为is的属性，is的值应为在父组件中注册过的组件的名称 -->
+				<component :is="view"></component>
+				
+			</div>
+		</div>
+
+		<script type="text/javascript">
+			// Home组件
+			let Home = {
+				template: '<p style="color:#787878;">Hello Home!</p>'
+			}
+			// About组件
+			let About = {
+				template: '<p>Hello About!</p>'
+			}
+			new Vue({
+				el: '#app',
+				components: {
+					Home,
+					About
+				},
+				data() {
+					return {
+						view: 'Home'
+					}
+				},
+				methods: {
+					toggleView(view) {
+						this.view = view
+					}
+				}
+			})
+		</script>
+	</body>
+</html>
